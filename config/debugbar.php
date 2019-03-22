@@ -16,7 +16,7 @@ return [
 
     // 'enabled' => env('DEBUGBAR_ENABLED', null),
     //Debugbar 分析器的启动状态将由  .env  文件中  APP_DEBUG  值决定。
-    'enabled' => env('APP_DEBUG', false),
+    'enabled' => env('DEBUGBAR_ENABLE', false),
 
     'except' => [
         'telescope*'
