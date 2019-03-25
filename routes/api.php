@@ -22,6 +22,6 @@ $api->version('v1', [
     $api->post('verificationCodes', 'VerificationCodesController@store')
         ->name('api.verificationCodes.store');
     // 用户注册
-    // $api->post('users', 'UsersController@store')
-    //     ->name('api.users.store');
+    $api->post('users', 'UsersController@store')
+        ->name('api.users.store');
 });
