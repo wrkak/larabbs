@@ -9,9 +9,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Auth;
 use Spatie\Permission\Traits\HasRoles;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmailContract,JWTSubject
 {
+    use HasApiTokens;
+
     use Traits\LastActivedAtHelper;
 
     use Traits\ActiveUserHelper;
@@ -129,6 +132,14 @@ class User extends Authenticatable implements MustVerifyEmailContract,JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function findForPassport($username)
+    {
+        filter_var($username, FILTER_VALIDATE_EMAIL) ?
+          $credentials['email'] = $username :
+          $credentials['phone'] = $username;
+        return self::where($credentials)->first();
     }
 
 }
