@@ -18,7 +18,7 @@ class PushNotification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Client $client)
     {
          $this->client = $client;
     }
